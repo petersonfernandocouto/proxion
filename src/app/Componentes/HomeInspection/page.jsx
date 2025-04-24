@@ -1,22 +1,21 @@
 "use client";
 
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import avatar from '../../app/IMG/avatar.png';
-import logo from '../../app/IMG/LOGOBG.png';
-import BGIMG from '../../app/IMG/BG.png';
-import { Menu, X } from 'lucide-react';
-import LogoTransparente from '../IMG/LogoFTransp.png';
-import SideBarMenu from '../Componentes/Menu/SideBarMenu';
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import avatar from "../../IMG/Avatar.png";
+import logo from "../../IMG/LOGOBG.png";
+import BGIMG from "../../IMG/BG.png";
+import { Menu, X } from "lucide-react";
+import SideBarMenu from "../Menu/SideBarMenu";
 
 export default function HomeInspection() {
-  const [data, setData] = useState('');
-  const [hora, setHora] = useState('');
+  const [data, setData] = useState("");
+  const [hora, setHora] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const agora = new Date();
-    setData(agora.toISOString().split('T')[0]);
+    setData(agora.toISOString().split("T")[0]);
     setHora(agora.toTimeString().slice(0, 5));
   }, []);
 
@@ -36,14 +35,23 @@ export default function HomeInspection() {
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       {!menuOpen && (
-            <button className="absolute top-4 left-4 z-30 md:hidden text-white" onClick={() => setMenuOpen(true)}>
-            <Menu size={28} />
-            </button>
-        )}
+        <button
+          className="absolute top-4 left-4 z-30 md:hidden text-white"
+          onClick={() => setMenuOpen(true)}
+        >
+          <Menu size={28} />
+        </button>
+      )}
 
       <div className="relative z-10 flex flex-col flex-1 items-center justify-between h-full p-4 text-white max-w-full overflow-y-auto mt-5">
         <div className="flex items-center gap-5 mt-20 md:mt-5">
-          <Image src={avatar} alt="Avatar" width={100} height={100} className="rounded-full" />
+          <Image
+            src={avatar}
+            alt="Avatar"
+            width={100}
+            height={100}
+            className="rounded-full"
+          />
           <div className="flex flex-col">
             <p className="text-[32px] md:text-4xl font-bold">Fulano Silva</p>
             <p className="text-[22px]">Analista</p>
@@ -62,7 +70,9 @@ export default function HomeInspection() {
           </div>
 
           <div className="text-center w-full">
-            <p className="text-white text-[22px] font-semibold">Horário de Chegada</p>
+            <p className="text-white text-[22px] font-semibold">
+              Horário de Chegada
+            </p>
             <input
               type="time"
               value={hora}
