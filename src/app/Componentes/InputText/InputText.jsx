@@ -20,6 +20,7 @@ function Input({
     height: inputHeight,
     margin: inputMargin,
     outline: "none",
+    textAlign: "center",
   };
 
   const handleFocus = () => {

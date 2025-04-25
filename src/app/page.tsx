@@ -1,4 +1,4 @@
-import Login from "../app/Componentes/SelectEquipment/SelectEquipment";
+import Login from "../app/Componentes/Login/Login";
 import BGIMG from "../app/IMG/BG.png";
 
 export default function Home() {
