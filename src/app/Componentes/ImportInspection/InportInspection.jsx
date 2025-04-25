@@ -48,7 +48,7 @@ function InportInspection() {
         <Image
           src={Logo}
           alt="Error"
-          className="max-w-[100px] mx-auto mt-8 mb-8  lg:hidden"
+          className="fixed bottom-2 max-w-[100px] mx-auto mt-8 mb-8  lg:hidden"
         />
       </div>
     </div>
