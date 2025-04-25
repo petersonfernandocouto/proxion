@@ -1,6 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import Logo from "../../IMG/LOGOBG.png";
+import { Menu, X } from "lucide-react";
+import SideBarMenu from "../Menu/SideBarMenu";
+import BGIMG from "../../IMG/BG.png";
+import InputFile from "../InputFile/InputFile";
+import Button from "../Button/Button";
 
 function InportInspection() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="relative w-screen h-screen flex bg-gray-100 overflow-hidden">
       {/* Background */}
@@ -24,6 +34,23 @@ function InportInspection() {
           <Menu size={28} />
         </button>
       )}
+      <div className="justify-between text-center relative w-screen h-screen flex  flex-col items-center py-4 px-10 gap-3">
+        <h2 className="text-2xl font-bold mb-3 mt-16 text-[#ffffff]">
+          Faça a importação da última vistoria
+        </h2>
+        <form
+          action=""
+          className="flex flex-col w-[300px] justify-center items-center"
+        >
+          <InputFile />
+          <Button textButton="Próximo" />
+        </form>
+        <Image
+          src={Logo}
+          alt="Error"
+          className="max-w-[100px] mx-auto mt-8 mb-8  lg:hidden"
+        />
+      </div>
     </div>
   );
 }

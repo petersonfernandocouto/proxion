@@ -6,7 +6,7 @@ import Logo from "../../IMG/LOGOBG.png";
 import { Menu, X } from "lucide-react";
 import SideBarMenu from "../Menu/SideBarMenu";
 import BGIMG from "../../IMG/BG.png";
-import Input from "../Input/Input";
+import InputText from "../InputText/InputText";
 import Button from "../Button/Button";
 import LogoCompany from "../../IMG/Logo-jnj.png";
 
@@ -41,19 +41,19 @@ function SelectCompany() {
           Selecione a empresa
         </h2>
         <form action="" className="flex flex-col w-[300px]">
-          <Input
+          <InputText
             labelText="Cliente"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
           />
-          <Input
+          <InputText
             labelText="Unidade"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
           />
-          <Input
+          <InputText
             labelText="Sublocal"
             inputHeight="50px"
             showIcon
