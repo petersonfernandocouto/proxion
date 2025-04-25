@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import EditIcon from "../../IMG/edit.svg";
 import Image from "next/image";
 
-function Input({ labelText, inputHeight, inputMargin, showIcon, textStyle }) {
+function Input({
+  labelText,
+  inputHeight,
+  inputMargin,
+  showIcon,
+  textStyle,
+  InputPlaceholder,
+}) {
   const [isFocused, setIsFocused] = useState(false);
 
   const inputStyle = {
@@ -37,6 +44,7 @@ function Input({ labelText, inputHeight, inputMargin, showIcon, textStyle }) {
           className={textStyle}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          placeholder={InputPlaceholder}
         />
         {showIcon && ( // Renderiza a imagem apenas se showIcon for true
           <Image

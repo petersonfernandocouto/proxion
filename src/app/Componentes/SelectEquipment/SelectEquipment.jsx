@@ -38,31 +38,34 @@ function SelectCompany() {
       )}
       <div className="relative w-screen h-screen flex  flex-col items-center p-4 lg:py-8 gap-3">
         <h2 className="text-2xl font-bold mb-3 mt-16 text-[#ffffff]">
-          Selecione a empresa
+          Selecionar Equipamento
         </h2>
         <form action="" className="flex flex-col w-[300px]">
           <InputText
-            labelText="Cliente"
+            labelText="Tipo"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
           />
           <InputText
-            labelText="Unidade"
+            labelText="Modelo"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
           />
           <InputText
-            labelText="Sublocal"
+            labelText="n° série"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
           />
-          <div className=" bg-white flex justify-center items-center h-[150px] mt-[24px] text-xl font-medium text-[#01AAAD] rounded-[8px]">
-            <Image className="" src={LogoCompany} alt="" />
-          </div>
-          <Button textButton="Próximo" />
+          <InputText
+            inputHeight="50px"
+            InputPlaceholder="Digite o n° de serie"
+            textStyle="text-center text-xl font-medium text-[#01AAAD]"
+            inputMargin="18px 0 0 0"
+          ></InputText>
+          <Button textButton="Selecionar" />
         </form>
         <Image
           src={Logo}
