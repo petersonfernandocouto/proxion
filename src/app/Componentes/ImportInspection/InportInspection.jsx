@@ -34,13 +34,13 @@ function InportInspection() {
           <Menu size={28} />
         </button>
       )}
-      <div className="justify-between text-center relative w-screen h-screen flex  flex-col items-center py-4 px-10 gap-3">
-        <h2 className="text-2xl font-bold mb-3 mt-16 text-[#ffffff]">
+      <div className="justify-between text-center relative w-screen h-screen flex  flex-col items-center py-4 lg:py-16 px-10  gap-3">
+        <h2 className="w-64 text-2xl font-bold mb-3 mt-16 lg:mt-0 text-[#ffffff]">
           Faça a importação da última vistoria
         </h2>
         <form
           action=""
-          className="flex flex-col w-[300px] justify-center items-center"
+          className="flex flex-col w-[300px] justify-center items-center lg:justify-between lg:h-[370px]"
         >
           <InputFile />
           <Button textButton="Próximo" />

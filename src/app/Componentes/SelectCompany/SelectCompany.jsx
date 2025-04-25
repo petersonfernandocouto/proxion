@@ -36,7 +36,7 @@ function SelectCompany() {
           <Menu size={28} />
         </button>
       )}
-      <div className="relative w-screen h-screen flex  flex-col items-center p-4 gap-3">
+      <div className="relative w-screen h-screen flex  flex-col items-center p-4 lg:py-8 gap-3">
         <h2 className="text-2xl font-bold mb-3 mt-16 text-[#ffffff]">
           Selecione a empresa
         </h2>
