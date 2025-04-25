@@ -8,6 +8,7 @@ import SideBarMenu from "../Menu/SideBarMenu";
 import BGIMG from "../../IMG/BG.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import LogoCompany from "../../IMG/Logo-jnj.png";
 
 function SelectCompany() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,21 +36,38 @@ function SelectCompany() {
           <Menu size={28} />
         </button>
       )}
-      <div className="relative w-screen h-screen flex  flex-col items-center p-4 px-12 gap-3">
+      <div className="relative w-screen h-screen flex  flex-col items-center p-4 gap-3">
         <h2 className="text-2xl font-bold mb-3 mt-16 text-[#ffffff]">
           Selecione a empresa
         </h2>
-        <form action="" className="flex flex-col w-[100%]">
-          <Input labelText="Cliente" inputHeight="50px" showIcon />
-          <Input labelText="Unidade" inputHeight="50px" showIcon />
-          <Input labelText="Sublocal" inputHeight="50px" showIcon />
-          <Input inputHeight="150px" inputMargin="18px 0 0 0" />
+        <form action="" className="flex flex-col w-[300px]">
+          <Input
+            labelText="Cliente"
+            inputHeight="50px"
+            showIcon
+            textStyle="text-xl font-medium text-[#01AAAD]"
+          />
+          <Input
+            labelText="Unidade"
+            inputHeight="50px"
+            showIcon
+            textStyle="text-xl font-medium text-[#01AAAD]"
+          />
+          <Input
+            labelText="Sublocal"
+            inputHeight="50px"
+            showIcon
+            textStyle="text-xl font-medium text-[#01AAAD]"
+          />
+          <div className=" bg-white flex justify-center items-center h-[150px] mt-[24px] text-xl font-medium text-[#01AAAD] rounded-[8px]">
+            <Image className="" src={LogoCompany} alt="" />
+          </div>
           <Button textButton="Próximo" />
         </form>
         <Image
           src={Logo}
           alt="Error"
-          className="max-w-[100px] mx-auto mt-8 mb-8"
+          className="max-w-[100px] mx-auto mt-8 mb-8  lg:hidden"
         />
       </div>
     </div>

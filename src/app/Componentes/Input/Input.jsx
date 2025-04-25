@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import EditIcon from "../../IMG/edit.svg";
 import Image from "next/image";
 
-function Input({ labelText, inputHeight, inputMargin, showIcon }) {
+function Input({ labelText, inputHeight, inputMargin, showIcon, textStyle }) {
+  const [isFocused, setIsFocused] = useState(false);
+
   const inputStyle = {
-    border: "2px solid #00ABAD",
+    border: isFocused ? "3px solid #00ABAD" : "2px solid #959595",
     padding: "8px 12px",
-    width: "100%",
+    width: "300px",
     borderRadius: "8px",
     height: inputHeight,
     margin: inputMargin,
+    outline: "none",
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
   };
   return (
     <>
@@ -20,7 +31,13 @@ function Input({ labelText, inputHeight, inputMargin, showIcon }) {
         {labelText}
       </label>
       <div className="relative flex flex-col">
-        <input type="text" style={inputStyle} />
+        <input
+          type="text"
+          style={inputStyle}
+          className={textStyle}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
         {showIcon && ( // Renderiza a imagem apenas se showIcon for true
           <Image
             src={EditIcon}
