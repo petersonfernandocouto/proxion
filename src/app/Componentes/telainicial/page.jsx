@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import BGIMG from "../../IMG/BG.png";
 import { X } from "lucide-react";
 import PropTypes from "prop-types";
 import LogoTransparente from "../../IMG/LogoFTransp.png";
@@ -60,11 +61,16 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
       </div>
 
       {/* Segunda coluna: Background preenchido */}
-      <div 
-        className="bg-cover bg-center h-full w-full"
-        style={{ backgroundImage: "url('/background-inicial.png')" }}
-      >
-        {/* Se quiser adicionar conteúdo aqui depois */}
+      <div className="relative w-screen h-screen flex bg-gray-100 overflow-hidden">
+
+       <Image
+        src={BGIMG}
+        alt="Background"
+        layout="fill"
+        objectFit="cover"
+        priority
+        className="z-0"
+      />
       </div>
 
     </div>  
