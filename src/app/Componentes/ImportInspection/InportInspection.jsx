@@ -40,7 +40,7 @@ function InportInspection() {
         </h2>
         <form
           action=""
-          className="flex flex-col w-[300px] justify-center items-center lg:justify-between lg:h-[370px]"
+          className="flex flex-col w-[300px] justify-center items-center mb-[170px] lg:mb-0 lg:justify-between lg:h-[370px]"
         >
           <InputFile />
           <Button textButton="Próximo" />
