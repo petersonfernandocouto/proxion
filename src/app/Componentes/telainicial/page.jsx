@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import avatar from "../../IMG/Avatar.png";
-import logo from "../../IMG/LOGOBG.png";
+import { useState } from "react";
 import BGIMG from "../../IMG/BG.png";
 import { Menu, X } from "lucide-react";
 import SideBarMenu from "../Menu/SideBarMenu";
