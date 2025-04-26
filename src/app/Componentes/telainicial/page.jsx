@@ -1,9 +1,12 @@
 "use client";
 
-import SideBarMenu from "../Menu/SideBarMenu";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import avatar from "../../IMG/Avatar.png";
+import logo from "../../IMG/LOGOBG.png";
 import BGIMG from "../../IMG/BG.png";
-import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import SideBarMenu from "../Menu/SideBarMenu";
 
 export default function TelaInicial() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,6 +17,14 @@ export default function TelaInicial() {
       {/* Sidebar */}
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
+      {!menuOpen && (
+        <button
+          className="absolute top-4 left-4 z-30 md:hidden text-white"
+          onClick={() => setMenuOpen(true)}
+        >
+          <Menu size={28} />
+        </button>
+      )}
       {/* Background */}
       <div className="relative w-screen h-screen flex bg-gray-100 overflow-hidden">
         <Image
