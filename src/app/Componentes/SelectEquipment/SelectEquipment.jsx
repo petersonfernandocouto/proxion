@@ -6,12 +6,24 @@ import Logo from "../../IMG/LOGOBG.png";
 import { Menu, X } from "lucide-react";
 import SideBarMenu from "../Menu/SideBarMenu";
 import BGIMG from "../../IMG/BG.png";
-import InputText from "../InputText/InputText";
 import Button from "../Button/Button";
-import LogoCompany from "../../IMG/Logo-jnj.png";
+import InputSelect from "../InputSelect/InputSelect";
+import InputText from "../InputText/InputText";
 
 function SelectCompany() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const tiposEquipamento = ["Tipo 1", "Tipo 2", "Tipo 3", "Tipo 4", "Tipo 5"];
+
+  const modelosEquipamento = [
+    "Modelo A",
+    "Modelo B",
+    "Modelo C",
+    "Modelo D",
+    "Modelo E",
+  ];
+
+  const numerosDeSerie = ["SN001", "SN002", "SN003", "SN004", "SN005"];
 
   return (
     <div className="relative w-screen h-screen flex bg-gray-100 overflow-hidden">
@@ -41,23 +53,26 @@ function SelectCompany() {
           Selecionar Equipamento
         </h2>
         <form action="" className="flex flex-col w-[300px]">
-          <InputText
+          <InputSelect
             labelText="Tipo"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
+            opcoes={tiposEquipamento}
           />
-          <InputText
+          <InputSelect
             labelText="Modelo"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
+            opcoes={modelosEquipamento}
           />
-          <InputText
+          <InputSelect
             labelText="n° série"
             inputHeight="50px"
             showIcon
             textStyle="text-xl font-medium text-[#01AAAD]"
+            opcoes={numerosDeSerie}
           />
           <InputText
             inputHeight="50px"
