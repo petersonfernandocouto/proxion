@@ -22,7 +22,7 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
           <h2 className="text-gray-600 font-bold">Vistoria</h2>
           <ul className="ml-4 space-y-1 mt-1 text-gray-600">
             <li>
-            <a href="/HomeInspection" className="hover:text-[#00A7B2]">Iniciar Vistoria</a>
+            <a href="/Componentes/HomeInspection" className="hover:text-[#00A7B2]">Iniciar Vistoria</a>
             </li>
             <li>
             <a href="/" className="hover:text-[#00A7B2]">Retomar Vistoria</a>
@@ -34,10 +34,10 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
             <a href="/" className="hover:text-[#00A7B2]">Importar Vistoria</a>
               </li>
             <li>
-            <a href="/" className="hover:text-[#00A7B2]">Selecionar Empresa</a>
+            <a href="/Componentes/SelectCompany" className="hover:text-[#00A7B2]">Selecionar Empresa</a>
               </li>
             <li>
-            <a href="/" className="hover:text-[#00A7B2]">Selecionar Equipamento</a>
+            <a href="/Componentes/SelectEquipment" className="hover:text-[#00A7B2]">Selecionar Equipamento</a>
               </li>
             <li>
             <a href="/" className="hover:text-[#00A7B2]">Lista de Equipamentos</a>
@@ -54,7 +54,7 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
              <a href="/" className="hover:text-[#00A7B2]">Cadastro de Analista</a>
               </li>
             <li>
-              <a href="/" className="hover:text-[#00A7B2]">Cadastro de Clientes</a>
+              <a href="/Componentes/RegisteredCompanies" className="hover:text-[#00A7B2]">Cadastro de Clientes</a>
               </li>
             <li>
               <a href="/" className="hover:text-[#00A7B2]">Cadastro de Equipamento</a>
