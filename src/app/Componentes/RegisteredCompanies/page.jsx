@@ -6,6 +6,8 @@ import { Menu, X } from "lucide-react";
 import SideBarMenu from "../Menu/SideBarMenu";
 import LogoJNJ from '../../IMG/Logo-jnj.png'
 import BGIMG from "../../IMG/BG.png";
+import Pen from '../../IMG/Pen.svg';
+import Filter from '../../IMG/filter.svg';
 
 export default function RegisteredCompanies() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,10 +21,100 @@ export default function RegisteredCompanies() {
             responsavel: "João Silva",
             email: "joao.silva@jnj.com.br",
             telefone: "(12) 99999-9999",
-            cidade: "Sâo José dos Campos",
-            logo: {LogoJNJ},
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
         },
-
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        {
+            cliente: "JNJ",
+            unidade: "GRU",
+            sublocal: "CDD",
+            responsavel: "João Silva",
+            email: "joao.silva@jnj.com.br",
+            telefone: "(12) 99999-9999",
+            cidade: "São José dos Campos",
+            logo: LogoJNJ,
+        },
+        
     ];
 
     return (
@@ -50,65 +142,95 @@ export default function RegisteredCompanies() {
                       </button>
                       )}
 
-                <div className="min-h-screen  p-8 text-white z-10">
-                    <h1 className="text-[34px] font-bold mb-15">Empresas Cadastradas</h1>
+                <div className="min-h-screen  p-8 text-white z-10 mt-7 ">
+                    <h1 className="mb-auto text-[30px] font-bold ">Empresas Cadastradas</h1>
 
-                    <div className="flex gap-4 mb-6">
+                    <div className="flex gap-4 mb-10 mt-10">
                         <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded">
                             + Adicionar
                         </button>
-                        <button className="bg-[#00ABAD] hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded">
+                        <button className="flex items-center gap-0 bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-2 rounded">
+                            <Image
+                                src={Pen}
+                                alt="Pen"
+                                width={30}
+                                height={30}
+                                className="h-8 w-8"
+                            />
                             Editar
                         </button>
-                        <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
-                            Remover
+                        <button className="bg-[#2C7172] hover:bg-teal-600 border border-whitetext-white font-semibold py-2 px-4 rounded">
+                             X  Remover
                         </button>
-                        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                        <button className="flex items-center gap-0 bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-2 rounded"> 
+                            <Image
+                                src={Filter}
+                                alt="Filter"
+                                width={50}
+                                height={50}
+                                className="h-8 w-6"
+                            />
                             Filtro
-                        </button>
+                            </button>
                     </div>
 
-                    <div className="overflow-x-auto bg-white rounded-lg shadow-lg"> 
-                      <table className="min-w-full text-gray-800">
-                        <thead className="bg-gray-200">
-                            <tr>
-                                <th className="p-4 text-left">Cliente</th>
-                                <th className="p-4 text-left">Unidade</th>
-                                <th className="p-4 text-left">Sublocal</th>
-                                <th className="p-4 text-left">Responsável</th>
-                                <th className="p-4 text-left">E-mail</th>
-                                <th className="p-4 text-left">Telefone</th>
-                                <th className="p-4 text-left">Cidade</th>
-                                <th className="p-4 text-left">Logo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {empresas.map((empresa, index) => (
-                                <tr 
-                                key={index}
-                                className={`border-t ${
-                                    selectedRow === index ? "bg-teal-100" : "hover:-bg-gray-100"
-                                }`}
-                                >
-                                <td className="p-4">
-                                    <input 
-                                    type="radio" 
-                                    name="selected"
-                                    checked={selectedRow === index}
-                                    onChange={() => setSelectedRow(index)}
-                                    /> 
-                                <span className="ml-2"> {empresa.cliente}</span></td>
-                                <td className="p-4">{empresa.unidade}</td>
-                                <td className="p-4">{empresa.sublocal}</td>
-                                <td className="p-4">{empresa.responsavel}</td>
-                                <td className="p-4">{empresa.email}</td>
-                                <td className="p-4">{empresa.telefone}</td>
-                                <td className="p-4">{empresa.cidade}</td>
-                                <td className="p-4"> <img src={empresa.logo} alt="Logo" className="h-8" /></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                      </table>
+                    <div className="overflow-x-auto bg-white rounded-lg shadow-lg overflow-hidden"> 
+                        <div className="overflow-y-auto">
+                            <table className="min-w-full text-gray-800">
+                                <thead className="bg-gray-200 sticky top-0 z-10 pb-4">
+                                    <tr>
+                                        <th className="p-4 text-left text-[#2C7172]">Cliente</th>
+                                        <th className="p-4 text-left text-[#2C7172]">Unidade</th>
+                                        <th className="p-4 text-left text-[#2C7172]">Sublocal</th>
+                                        <th className="p-4 text-left text-[#2C7172]">Responsável</th>
+                                        <th className="p-4 text-left text-[#2C7172]">E-mail</th>
+                                        <th className="p-4 text-left text-[#2C7172]">Telefone</th>
+                                        <th className="p-4 text-left text-[#2C7172]">Cidade</th>
+                                        <th className="p-4 text-left text-[#2C7172]">Logo</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 300px)' }}>
+                            <table className="min-w-full text-gray-800">
+                                <tbody>
+                                    {empresas.map((empresa, index) => (
+                                        <tr 
+                                        key={index}
+                                        className={`border-t ${
+                                            selectedRow === index ? "bg-teal-100" : "hover:-bg-gray-50"
+                                        }`}
+                                        >
+                                        <td className="p-4">
+                                            <input 
+                                            type="radio" 
+                                            name="selected"
+                                            checked={selectedRow === index}
+                                            onChange={() => setSelectedRow(index)}
+                                            /> 
+                                            <span className="ml-2 text-[#2C7172]"> {empresa.cliente}</span></td>
+                                            <td className="p-4 text-[#2C7172]">{empresa.unidade}</td>
+                                            <td className="p-4 text-[#2C7172]">{empresa.sublocal}</td>
+                                            <td className="p-4 text-[#2C7172]">{empresa.responsavel}</td>
+                                            <td className="p-4 text-[#2C7172]">{empresa.email}</td>
+                                            <td className="p-4 text-[#2C7172]">{empresa.telefone}</td>
+                                            <td className="p-4 text-[#2C7172]">{empresa.cidade}</td>
+                                            <td className="p-4 text-[#2C7172]"> 
+                                                <Image
+                                                    src={empresa.logo}
+                                                    alt="Logo"
+                                                    width={50}
+                                                    height={50}
+                                                    className="h-8 w-auto"
+                                                />
+                                            </td>
+                                        </tr>
+                                        ))}
+                                        </tbody>
+                                        </table>
+                                
+                        </div>
                     </div>
                 </div>
         </div>                      
