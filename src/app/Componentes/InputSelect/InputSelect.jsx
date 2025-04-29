@@ -9,18 +9,24 @@ function InputSelect({
   showIcon,
   textStyle,
   InputPlaceholder,
-  opcoes, // Nova prop para receber a lista de opções
+  opcoes = [],
+  onChange,
+  value,
+  disabled = false,
 }) {
-  const [valorSelecionado, setValorSelecionado] = useState("");
   const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleClickInput = () => {
-    setMostrarOpcoes(true);
+    if (!disabled) {
+      setMostrarOpcoes(true);
+    }
   };
 
   const handleSelecionarOpcao = (opcao) => {
-    setValorSelecionado(opcao);
+    if (onChange) {
+      onChange(opcao);
+    }
     setMostrarOpcoes(false);
   };
 
@@ -29,7 +35,9 @@ function InputSelect({
   };
 
   const handleFocus = () => {
-    setIsFocused(true);
+    if (!disabled) {
+      setIsFocused(true);
+    }
   };
 
   const handleBlur = () => {
@@ -45,6 +53,10 @@ function InputSelect({
     margin: inputMargin,
     outline: "none",
     textAlign: "center",
+    backgroundColor: "#ffffff",
+    color: "#01AAAD",
+    fontSize: "20px",
+    fontWeight: "500",
   };
 
   return (
@@ -58,7 +70,7 @@ function InputSelect({
       <div className="relative flex flex-col">
         <input
           type="text"
-          value={valorSelecionado}
+          value={value}
           onClick={handleClickInput}
           readOnly
           style={inputStyle}
@@ -66,6 +78,7 @@ function InputSelect({
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={InputPlaceholder}
+          disabled={disabled}
         />
         {showIcon && (
           <Image
@@ -75,22 +88,18 @@ function InputSelect({
           />
         )}
         {mostrarOpcoes && (
-          <div className="fixed flex flex-col justify-center items-center inset-0 bg-[#6aaaada3] z-10 ">
+          <div className="fixed inset-0 flex justify-center items-center bg-[#6aaaada3] z-10">
             <div className="flex flex-col justify-center items-center p-2  bg-white shadow rounded-[8px] mt-2 w-[300px] border-[3px] border-[#00ABAD] hover:border-[#959595]">
               <div className="py-2 h-[170px] overflow-y-scroll bg-[#ACE5E7] rounded-[8px] w-full">
-                {opcoes.map(
-                  (
-                    opcao // Use a prop 'opcoes' para renderizar a lista
-                  ) => (
-                    <button
-                      key={opcao}
-                      onClick={() => handleSelecionarOpcao(opcao)}
-                      className="block px-4 py-2 hover:text-[#266e6f] w-full text-center text-xl font-medium text-[#01AAAD] "
-                    >
-                      {opcao}
-                    </button>
-                  )
-                )}
+                {opcoes.map((opcao) => (
+                  <button
+                    key={opcao}
+                    onClick={() => handleSelecionarOpcao(opcao)}
+                    className="block px-4 py-2 hover:text-[#266e6f] w-full text-center text-xl font-medium text-[#01AAAD] "
+                  >
+                    {opcao}
+                  </button>
+                ))}
               </div>
               <div className="flex justify-end p-2">
                 <button
