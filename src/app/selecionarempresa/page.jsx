@@ -2,15 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Logo from "../../IMG/LOGOBG.png";
+import Logo from "../IMG/LOGOBG.png";
 import { Menu, X } from "lucide-react";
-import SideBarMenu from "../Menu/SideBarMenu";
-import BGIMG from "../../IMG/BG.png";
-import InputSelect from "../InputSelect/InputSelect";
-import Button from "../Button/Button";
-import logoCLiente1 from "../../IMG/Logo-jnj.png";
-import logoCLiente2 from "../../IMG/Logo-jnj.png";
-import logoCLiente3 from "../../IMG/Logo-jnj.png";
+import SideBarMenu from "../../Componentes/Menu/SideBarMenu";
+import BGIMG from "../IMG/BG.png";
+import InputSelect from "../../Componentes/InputSelect/InputSelect";
+import Button from "../../Componentes/Button/Button";
+import logoCLiente1 from "../IMG/Logo-jnj.png";
+import logoCLiente2 from "../IMG/Logo-jnj.png";
+import logoCLiente3 from "../IMG/Logo-jnj.png";
+import Link from "next/link";
 
 const dadosHierarquicos = [
   {
@@ -204,11 +205,13 @@ function SelectCompany() {
               />
             )}
           </div>
-          <Button
-            type="submit"
-            textButton="Próximo"
-            disabled={!sublocalSelecionado}
-          />
+          <Link href="/importarvistoria">
+            <Button
+              type="submit"
+              textButton="Próximo"
+              disabled={!sublocalSelecionado}
+            />
+          </Link>
         </form>
         <Image
           src={Logo}

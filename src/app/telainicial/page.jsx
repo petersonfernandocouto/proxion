@@ -2,16 +2,15 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import BGIMG from "../../IMG/BG.png";
+import BGIMG from "../IMG/BG.png";
 import { Menu, X } from "lucide-react";
-import SideBarMenu from "../Menu/SideBarMenu";
+import SideBarMenu from "../../Componentes/Menu/SideBarMenu";
 
 export default function TelaInicial() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="fixed sm:relative z-20 h-full w-full grid grid-cols-1 sm:grid-cols-[1fr_2fr]">
-
       {/* Sidebar */}
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
@@ -34,7 +33,6 @@ export default function TelaInicial() {
           className="z-0"
         />
       </div>
-
     </div>
   );
 }

@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import avatar from "../../IMG/Avatar.png";
-import logo from "../../IMG/LOGOBG.png";
-import BGIMG from "../../IMG/BG.png";
+import avatar from "../IMG/Avatar.png";
+import logo from "../IMG/LOGOBG.png";
+import BGIMG from "../IMG/BG.png";
 import { Menu, X } from "lucide-react";
-import SideBarMenu from "../Menu/SideBarMenu";
+import Link from "next/link";
+import Button from "../../Componentes/Button/Button";
+import SideBarMenu from "../../Componentes/Menu/SideBarMenu";
 
 export default function HomeInspection() {
   const [data, setData] = useState("");
@@ -81,9 +83,9 @@ export default function HomeInspection() {
             />
           </div>
 
-          <button className="bg-[#00A7B2] text-white text-[24px] font-semibold px-4 py-3 rounded-md shadow w-[320px] mb-10">
-            Iniciar vistoria
-          </button>
+          <Link href="/selecionarempresa">
+            <Button textButton="Iniciar vistoria"></Button>
+          </Link>
         </div>
 
         <div className="mb-12 md:mb-5">

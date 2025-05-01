@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Logo from "../../IMG/LOGOBG.png";
+import Logo from "../IMG/LOGOBG.png";
 import { Menu, X } from "lucide-react";
-import SideBarMenu from "../Menu/SideBarMenu";
-import BGIMG from "../../IMG/BG.png";
-import InputFile from "../InputFile/InputFile";
-import Button from "../Button/Button";
+import SideBarMenu from "../../Componentes/Menu/SideBarMenu";
+import BGIMG from "../IMG/BG.png";
+import InputFile from "../../Componentes/InputFile/InputFile";
+import Button from "../../Componentes/Button/Button";
 
 function InportInspection() {
   const [menuOpen, setMenuOpen] = useState(false);

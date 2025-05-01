@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import UploadIcon from "../../IMG/Upload.svg";
+import UploadIcon from "../../app/IMG/Upload.svg";
 function InputFile() {
   const [selectedFile, setSelectedFile] = useState(null);
 
