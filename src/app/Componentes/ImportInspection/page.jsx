@@ -22,7 +22,7 @@ function InportInspection() {
         priority
         className="z-0"
       />
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="absolute inset-0 bg-black/10 z-0" />
 
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 

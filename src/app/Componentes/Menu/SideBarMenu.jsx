@@ -31,7 +31,7 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
             <a href="/" className="hover:text-[#00A7B2]">Reiniciar Vistoria</a>
               </li>
             <li>
-            <a href="/" className="hover:text-[#00A7B2]">Importar Vistoria</a>
+            <a href="/Componentes/ImportInspection" className="hover:text-[#00A7B2]">Importar Vistoria</a>
               </li>
             <li>
             <a href="/Componentes/SelectCompany" className="hover:text-[#00A7B2]">Selecionar Empresa</a>

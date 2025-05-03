@@ -8,10 +8,35 @@ import LogoJNJ from '../../IMG/Logo-jnj.png'
 import BGIMG from "../../IMG/BG.png";
 import Pen from '../../IMG/Pen.svg';
 import Filter from '../../IMG/filter.svg';
+import ClienteModal from '../Modal/modalCompanies'
 
 export default function RegisteredCompanies() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
+    const [clientes, setClientes] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [clienteEditando, setClienteEditando] = useState(null);
+
+    const handleAdicionar = () => {
+        setClienteEditando(null);
+        setModalOpen(true);
+      };
+    
+      const handleEditar = (cliente) => {
+        setClienteEditando(cliente);
+        setModalOpen(true);
+      };
+    
+      const handleSalvar = (novoCliente) => {
+        if (clienteEditando) {
+      
+          setClientes(clientes.map(c => c.codigoCliente === clienteEditando.codigoCliente ? novoCliente : c));
+        } else {
+         
+          setClientes([...clientes, novoCliente]);
+        }
+        setModalOpen(false);
+      };
 
     const empresas = [
         {
@@ -129,7 +154,7 @@ export default function RegisteredCompanies() {
                 className="z-0"
               />
 
-              <div className="absolute inset-0 bg-black/50 z-0" />
+              <div className="absolute inset-0 bg-black/10 z-0" />
               
                     <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
               
@@ -146,10 +171,16 @@ export default function RegisteredCompanies() {
                     <h1 className="mb-auto text-[30px] font-bold ">Empresas Cadastradas</h1>
 
                     <div className="flex gap-4 mb-10 mt-10">
-                        <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded">
+                        <button onClick={handleAdicionar} className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded">
                             + Adicionar
                         </button>
-                        <button className="flex items-center gap-0 bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-2 rounded">
+                        <button 
+                            onClick={() => {
+                                if (selectedRow !== null) {
+                                    handleEditar((clientes.length > 0 ? clientes : empresas)[selectedRow]);
+                                }
+                            }}
+                        className="flex items-center gap-0 bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-2 rounded">
                             <Image
                                 src={Pen}
                                 alt="Pen"
@@ -159,7 +190,7 @@ export default function RegisteredCompanies() {
                             />
                             Editar
                         </button>
-                        <button className="bg-[#2C7172] hover:bg-teal-600 border border-whitetext-white font-semibold py-2 px-4 rounded">
+                        <button className="bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-4 rounded">
                              X  Remover
                         </button>
                         <button className="flex items-center gap-0 bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-2 rounded"> 
@@ -195,7 +226,7 @@ export default function RegisteredCompanies() {
                         <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 300px)' }}>
                             <table className="min-w-full text-gray-800">
                                 <tbody>
-                                    {empresas.map((empresa, index) => (
+                                    {(clientes.length > 0 ? clientes : empresas).map((empresa, index) => (
                                         <tr 
                                         key={index}
                                         className={`border-t ${
@@ -233,6 +264,16 @@ export default function RegisteredCompanies() {
                         </div>
                     </div>
                 </div>
-        </div>                      
+
+                {modalOpen && (
+                    <ClienteModal
+                        clienteEditando={clienteEditando}
+                        isOpen={modalOpen}
+                        onSave={handleSalvar}
+                        onClose={() => setModalOpen(false)}
+                    />
+                )}
+    </div> 
+
     )
 }

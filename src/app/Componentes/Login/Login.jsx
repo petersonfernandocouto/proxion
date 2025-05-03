@@ -50,7 +50,7 @@ function Login() {
 
             <Link
             
-            href="/Cadastro"
+            href="/Componentes/HomeInspection"
             className='mt-6 w-full max-w-[250px] bg-white text-[#00abae] font-medium py-2 rounded-[10px] shadow-md hover:bg-gray-200 transition text-center'
             >    
                     Login      
