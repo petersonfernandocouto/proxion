@@ -41,17 +41,17 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
               </a>
             </li>
             <li>
-              <a href="/" className="hover:text-[#00A7B2]">
+              <a href="/importarvistoria" className="hover:text-[#00A7B2]">
                 Importar Vistoria
               </a>
             </li>
             <li>
-              <a href="/" className="hover:text-[#00A7B2]">
+              <a href="/selecionarempresa" className="hover:text-[#00A7B2]">
                 Selecionar Empresa
               </a>
             </li>
             <li>
-              <a href="/" className="hover:text-[#00A7B2]">
+              <a href="/selecionarequipamento" className="hover:text-[#00A7B2]">
                 Selecionar Equipamento
               </a>
             </li>
@@ -61,7 +61,7 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
               </a>
             </li>
             <li>
-              <a href="/" className="hover:text-[#00A7B2]">
+              <a href="/paginaparabens" className="hover:text-[#00A7B2]">
                 Finalizar Vistoria
               </a>
             </li>
@@ -76,7 +76,7 @@ function SidebarMenu({ menuOpen, setMenuOpen }) {
               </a>
             </li>
             <li>
-              <a href="/" className="hover:text-[#00A7B2]">
+              <a href="/cadastroempresas" className="hover:text-[#00A7B2]">
                 Cadastro de Clientes
               </a>
             </li>

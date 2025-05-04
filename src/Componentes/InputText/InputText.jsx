@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditIcon from "../../IMG/edit.svg";
+import EditIcon from "../../app/IMG/edit.svg";
 import Image from "next/image";
 import { Search } from "lucide-react";
 

@@ -22,7 +22,7 @@ function InportInspection() {
         priority
         className="z-0"
       />
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="absolute inset-0 bg-black/20 z-0" />
 
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
@@ -35,7 +35,7 @@ function InportInspection() {
         </button>
       )}
       <div className="justify-between text-center relative w-screen h-screen flex  flex-col items-center py-4 lg:py-16 px-10  gap-3">
-        <h2 className="w-64 text-2xl font-bold mb-3 mt-16 lg:mt-0 text-[#ffffff]">
+        <h2 className="w-64 text-2xl font-bold mb-3 mt-16 lg:mt-16 text-[#ffffff]">
           Faça a importação da última vistoria
         </h2>
         <form
