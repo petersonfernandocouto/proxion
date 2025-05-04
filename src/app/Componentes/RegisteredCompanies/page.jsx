@@ -38,9 +38,22 @@ export default function RegisteredCompanies() {
         setModalOpen(false);
       };
 
+      const handleRemover = () => {
+        const listaAtual = clientes.length > 0 ? clientes : empresas;
+      
+        if (selectedRow !== null) {
+          const novaLista = [...listaAtual];
+          novaLista.splice(selectedRow, 1);
+          setClientes(novaLista);
+          setSelectedRow(null);
+        }
+      };
+
+      const [filtro, setFiltro] = useState("");
+
     const empresas = [
         {
-            cliente: "JNJ",
+            cliente: "ABC",
             unidade: "GRU",
             sublocal: "CDD",
             responsavel: "João Silva",
@@ -50,7 +63,7 @@ export default function RegisteredCompanies() {
             logo: LogoJNJ,
         },
         {
-            cliente: "JNJ",
+            cliente: "DEF",
             unidade: "GRU",
             sublocal: "CDD",
             responsavel: "João Silva",
@@ -60,7 +73,7 @@ export default function RegisteredCompanies() {
             logo: LogoJNJ,
         },
         {
-            cliente: "JNJ",
+            cliente: "HIJ",
             unidade: "GRU",
             sublocal: "CDD",
             responsavel: "João Silva",
@@ -190,19 +203,19 @@ export default function RegisteredCompanies() {
                             />
                             Editar
                         </button>
-                        <button className="bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-4 rounded">
-                             X  Remover
-                        </button>
-                        <button className="flex items-center gap-0 bg-[#2C7172] hover:bg-teal-600 border border-white text-white font-semibold py-2 px-2 rounded"> 
-                            <Image
-                                src={Filter}
-                                alt="Filter"
-                                width={50}
-                                height={50}
-                                className="h-8 w-6"
-                            />
-                            Filtro
+                        <button 
+                            onClick={handleRemover}
+                            className="bg-[#2C7172] hover:bg-red-600 border border-white text-white font-semibold py-2 px-4 rounded"
+                            >
+                            X Remover
                             </button>
+                            <input
+                                type="text"
+                                placeholder="Filtrar por cliente"
+                                value={filtro}
+                                onChange={(e) => setFiltro(e.target.value)}
+                                className="bg-white text-[#2C7172] px-4 py-2 rounded border border-gray-300 focus:outline-none focus:border-white"
+                                />
                     </div>
 
                     <div className="overflow-x-auto bg-white rounded-lg shadow-lg overflow-hidden"> 
@@ -226,7 +239,11 @@ export default function RegisteredCompanies() {
                         <div className="overflow-y-auto" style={{ maxHeight: 'calc(100vh - 300px)' }}>
                             <table className="min-w-full text-gray-800">
                                 <tbody>
-                                    {(clientes.length > 0 ? clientes : empresas).map((empresa, index) => (
+                                {(clientes.length > 0 ? clientes : empresas)
+                                    .filter((empresa) =>
+                                        empresa.cliente.toLowerCase().includes(filtro.toLowerCase())
+                                    )
+                                    .map((empresa, index) => (
                                         <tr 
                                         key={index}
                                         className={`border-t ${
