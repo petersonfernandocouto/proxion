@@ -60,6 +60,7 @@ export default function ClientModal({ isOpen, onClose, onSave, clienteEditando }
               type="text" 
               value={formData.cliente}
               onChange={(e) => setFormData({ ...formData, cliente: e.target.value })}
+              maxLength={3}
               className="w-17 border border-[#00ABAD] text-[#187374] rounded-lg p-2 "
             />
           </div>
@@ -70,7 +71,22 @@ export default function ClientModal({ isOpen, onClose, onSave, clienteEditando }
               type="text" 
               placeholder="(00) 00000-0000"
               value={formData.telefone}
-              onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+              onChange={(e) => {
+                let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
+
+                // Aplica a máscara (00) 00000-0000
+                if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+
+                if (value.length > 6) {
+                  value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+                } else if (value.length > 2) {
+                  value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                } else {
+                  value = value.replace(/^(\d*)/, '($1');
+                }
+
+                setFormData({ ...formData, telefone: value });
+              }}
               className="w-17 border border-[#00ABAD] text-[#187374] rounded-lg p-2"
             />
           </div>
@@ -81,6 +97,7 @@ export default function ClientModal({ isOpen, onClose, onSave, clienteEditando }
               type="text" 
               value={formData.unidade}
               onChange={(e) => setFormData({ ...formData, unidade: e.target.value })}
+              maxLength={3}
               className="w-17 border border-[#00ABAD] text-[#187374] rounded-lg p-2"
             />
           </div>
@@ -102,6 +119,7 @@ export default function ClientModal({ isOpen, onClose, onSave, clienteEditando }
               type="text" 
               value={formData.sublocal}
               onChange={(e) => setFormData({ ...formData, sublocal: e.target.value })}
+              maxLength={3}
               className="w-18 border border-[#00ABAD] text-[#187374] rounded-lg p-2"
             />
           </div>
