@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Logo from "../../IMG/LOGOBG.png";
+import Logo from "../IMG/LoGOBG.png";
 import { Menu, X } from "lucide-react";
-import SideBarMenu from "../Menu/SideBarMenu";
-import BGIMG from "../../IMG/BG.png";
-import Button from "../Button/Button";
-import InputSelect from "../InputSelect/InputSelect";
-import InputText from "../InputText/InputText";
+import SideBarMenu from "../../Componentes/Menu/SideBarMenu";
+import BGIMG from "../IMG/BG.png";
+import Button from "../../Componentes/Button/Button";
+import InputSelect from "../../Componentes/InputSelect/InputSelect";
+import InputText from "../../Componentes/InputText/InputText";
 
 // Supondo que você tenha uma estrutura de dados como esta
 const equipamentosData = [
@@ -104,7 +104,7 @@ function SelectEquipment() {
         priority
         className="z-0"
       />
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="absolute inset-0 bg-black/20 z-0" />
 
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
