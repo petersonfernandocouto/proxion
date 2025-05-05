@@ -150,7 +150,7 @@ function SelectCompany() {
         priority
         className="z-0"
       />
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="absolute inset-0 bg-black/20 z-0" />
 
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
@@ -194,7 +194,7 @@ function SelectCompany() {
             disabled={!unidadeSelecionada}
           />
 
-          <div className=" bg-white flex justify-center items-center h-[150px] mt-[24px] text-xl font-medium text-[#01AAAD] rounded-[8px]">
+          <div className=" bg-white flex justify-center items-center h-[100px] mt-[24px] text-xl font-medium text-[#01AAAD] rounded-[8px]">
             {logoCliente && (
               <Image
                 className=""

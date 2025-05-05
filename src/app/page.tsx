@@ -1,5 +1,5 @@
-import Login from "./login/page";
-import Login from "./Componentes/Login/Login";
+
+import Login from "../app/login/page";
 import BGIMG from "../app/IMG/BG.png";
 
 export default function Home() {
