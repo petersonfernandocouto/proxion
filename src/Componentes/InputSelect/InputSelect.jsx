@@ -6,9 +6,6 @@ import EditIcon from "../../app/IMG/edit.svg";
 import Image from "next/image";
 
 
-
-
-
 function InputSelect({
   labelText,
   inputHeight,
