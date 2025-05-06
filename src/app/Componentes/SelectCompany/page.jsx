@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "../../IMG/LOGOBG.png";
 import { Menu, X } from "lucide-react";
-import SideBarMenu from "../Menu/SideBarMenu";
+import SideBarMenu from "d:/Dev/Proxion/proxion/src/Componentes/Menu/SideBarMenu.jsx";
 import BGIMG from "../../IMG/BG.png";
 import InputText from "../InputText/InputText";
 import Button from "../Button/Button";

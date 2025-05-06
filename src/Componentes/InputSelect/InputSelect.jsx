@@ -3,10 +3,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import EditIcon from "../../app/IMG/edit.svg";
-import Image from "next/image";
-
-
-
 
 
 function InputSelect({

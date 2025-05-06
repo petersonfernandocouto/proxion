@@ -3,140 +3,190 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "../IMG/LOGOBG.png";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import SideBarMenu from "../../Componentes/Menu/SideBarMenu";
 import BGIMG from "../IMG/BG.png";
 import InputSelect from "../../Componentes/InputSelect/InputSelect";
 import Button from "../../Componentes/Button/Button";
-import logoCLiente1 from "../IMG/Logo-jnj.png";
-import logoCLiente2 from "../IMG/Logo-jnj.png";
-import logoCLiente3 from "../IMG/Logo-jnj.png";
-import Link from "next/link";
+import LogoCompany from "../IMG/Logo-jnj.png";
 
-const dadosHierarquicos = [
-  {
-    nomeCliente: "Cliente 1",
-    logoSrc: logoCLiente1,
-    unidades: [
-      {
-        nomeUnidade: "Unidade A do Cliente 1",
-        sublocais: ["Sublocal 1A.1", "Sublocal 1A.2", "Sublocal 1A.3"],
-      },
-      {
-        nomeUnidade: "Unidade B do Cliente 1",
-        sublocais: ["Sublocal 1B.1", "Sublocal 1B.2"],
-      },
-    ],
-  },
-  {
-    nomeCliente: "Cliente 2",
-    logoSrc: logoCLiente2,
-    unidades: [
-      {
-        nomeUnidade: "Unidade C do Cliente 2",
-        sublocais: [
-          "Sublocal 2C.1",
-          "Sublocal 2C.2",
-          "Sublocal 2C.3",
-          "Sublocal 2C.4",
-        ],
-      },
-    ],
-  },
-  {
-    nomeCliente: "Cliente 3",
-    logoSrc: logoCLiente3,
-    unidades: [
-      {
-        nomeUnidade: "Unidade D do Cliente 3",
-        sublocais: ["Sublocal 3D.1"],
-      },
-      {
-        nomeUnidade: "Unidade E do Cliente 3",
-        sublocais: ["Sublocal 3E.1", "Sublocal 3E.2"],
-      },
-      {
-        nomeUnidade: "Unidade F do Cliente 3",
-        sublocais: ["Sublocal 3F.1", "Sublocal 3F.2", "Sublocal 3F.3"],
-      },
-    ],
-  },
-];
-
-function SelectCompany() {
+export default function SelectCompanyPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  // Estados para os dados
+  const [clientes, setClientes] = useState([]);
+  const [unidades, setUnidades] = useState([]);
+  const [subLocais, setSubLocais] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
+  // Estados para seleções
   const [clienteSelecionado, setClienteSelecionado] = useState("");
-  const [logoCliente, setLogoCliente] = useState(null);
   const [unidadeSelecionada, setUnidadeSelecionada] = useState("");
-  const [sublocalSelecionado, setSublocalSelecionado] = useState("");
-  const [opcoesUnidades, setOpcoesUnidades] = useState([]);
-  const [opcoesSublocais, setOpcoesSublocais] = useState([]);
+  const [subLocalSelecionado, setSubLocalSelecionado] = useState("");
 
-  // Atualiza as opções de unidade quando o cliente é selecionado
+  // Buscar clientes ao carregar a página
   useEffect(() => {
-    const cliente = dadosHierarquicos.find(
-      (c) => c.nomeCliente === clienteSelecionado
-    );
-    if (cliente) {
-      setOpcoesUnidades(cliente.unidades.map((u) => u.nomeUnidade));
-      setLogoCliente(cliente.logoSrc);
-      setUnidadeSelecionada("");
-      setOpcoesSublocais([]);
-      setSublocalSelecionado("");
-    } else {
-      setOpcoesUnidades([]);
-      setLogoCliente(null);
-      setUnidadeSelecionada("");
-      setOpcoesSublocais([]);
-      setSublocalSelecionado("");
-    }
-  }, [clienteSelecionado, dadosHierarquicos]);
-
-  // Atualiza as opções de sublocal quando a unidade é selecionada
-  useEffect(() => {
-    const cliente = dadosHierarquicos.find(
-      (c) => c.nomeCliente === clienteSelecionado
-    );
-    if (cliente) {
-      const unidade = cliente.unidades.find(
-        (u) => u.nomeUnidade === unidadeSelecionada
-      );
-      if (unidade) {
-        setOpcoesSublocais(unidade.sublocais);
-        // Reseta o sublocal ao mudar de unidade
-        setSublocalSelecionado("");
-      } else {
-        setOpcoesSublocais([]);
-        setSublocalSelecionado("");
+    const fetchClientes = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const response = await fetch('/api/empresas/cliente');
+        
+        if (!response.ok) {
+          throw new Error(`Erro ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log("Clientes recebidos:", data); // Debug
+        
+        if (Array.isArray(data) && data.length > 0) {
+          setClientes(data);
+        } else if (data.error) {
+          throw new Error(data.error);
+        } else {
+          setClientes([]);
+          setError("Nenhum cliente encontrado");
+        }
+      } catch (err) {
+        console.error("Erro ao buscar clientes:", err);
+        setError(err.message);
+        // Usando dados estáticos como fallback em caso de erro
+        setClientes(["KNV", "JSN"]);
+      } finally {
+        setLoading(false);
       }
-    } else {
-      setOpcoesSublocais([]);
-      setSublocalSelecionado("");
-    }
-  }, [clienteSelecionado, unidadeSelecionada, dadosHierarquicos]);
+    };
+    
+    fetchClientes();
+  }, []);
 
-  const opcoesClientes = dadosHierarquicos.map(
-    (cliente) => cliente.nomeCliente
-  );
+  // Buscar unidades quando um cliente é selecionado
+  useEffect(() => {
+    if (!clienteSelecionado) {
+      setUnidades([]);
+      return;
+    }
+    
+    const fetchUnidades = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const url = `/api/empresas/cliente/unidade?cliente=${encodeURIComponent(clienteSelecionado)}`;
+        console.log("Buscando unidades URL:", url); // Debug
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error(`Erro ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log("Unidades recebidas:", data); // Debug
+        
+        if (Array.isArray(data) && data.length > 0) {
+          setUnidades(data);
+        } else if (data.error) {
+          throw new Error(data.error);
+        } else {
+          setUnidades([]);
+          setError("Nenhuma unidade encontrada para este cliente");
+        }
+      } catch (err) {
+        console.error("Erro ao buscar unidades:", err);
+        setError(err.message);
+        // Usando dados estáticos como fallback em caso de erro
+        setUnidades(["SJC"]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchUnidades();
+  }, [clienteSelecionado]);
+
+  // Buscar sublocais quando um cliente e unidade são selecionados
+  useEffect(() => {
+    if (!clienteSelecionado || !unidadeSelecionada) {
+      setSubLocais([]);
+      return;
+    }
+    
+    const fetchSubLocais = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const url = `/api/empresas/cliente/unidade/sub-local?cliente=${encodeURIComponent(clienteSelecionado)}&unidade=${encodeURIComponent(unidadeSelecionada)}`;
+        console.log("Buscando sublocais URL:", url); // Debug
+        
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error(`Erro ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log("Sublocais recebidos:", data); // Debug
+        
+        if (Array.isArray(data) && data.length > 0) {
+          setSubLocais(data);
+        } else if (data.error) {
+          throw new Error(data.error);
+        } else {
+          setSubLocais([]);
+          setError("Nenhum sublocal encontrado para esta unidade");
+        }
+      } catch (err) {
+        console.error("Erro ao buscar sublocais:", err);
+        setError(err.message);
+        // Usando dados estáticos como fallback em caso de erro
+        setSubLocais(["DPA", "PRD", "NAM", "OTC"]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchSubLocais();
+  }, [clienteSelecionado, unidadeSelecionada]);
 
   const handleClienteChange = (cliente) => {
+    console.log("Cliente selecionado:", cliente);
     setClienteSelecionado(cliente);
+    setUnidadeSelecionada("");
+    setSubLocalSelecionado("");
   };
 
   const handleUnidadeChange = (unidade) => {
+    console.log("Unidade selecionada:", unidade);
     setUnidadeSelecionada(unidade);
+    setSubLocalSelecionado("");
   };
 
-  const handleSublocalChange = (sublocal) => {
-    setSublocalSelecionado(sublocal);
+  const handleSubLocalChange = (subLocal) => {
+    console.log("Sublocal selecionado:", subLocal);
+    setSubLocalSelecionado(subLocal);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Cliente Selecionado:", clienteSelecionado);
-    console.log("Unidade Selecionada:", unidadeSelecionada);
-    console.log("Sublocal Selecionado:", sublocalSelecionado);
-    // Aqui você pode adicionar a lógica para o próximo passo
+  const handleSubmit = (e) => {
+    if (e) e.preventDefault();
+    
+    if (!clienteSelecionado || !unidadeSelecionada || !subLocalSelecionado) {
+      setError("Por favor, preencha todos os campos");
+      return;
+    }
+    
+    // Aqui você pode navegar para a próxima página ou enviar os dados
+    console.log("Empresa selecionada:", {
+      cliente: clienteSelecionado,
+      unidade: unidadeSelecionada,
+      subLocal: subLocalSelecionado
+    });
+    
+    // Exemplo de navegação para a próxima página
+    // router.push('/proxima-pagina');
   };
 
   return (
@@ -150,7 +200,7 @@ function SelectCompany() {
         priority
         className="z-0"
       />
-      <div className="absolute inset-0 bg-black/20 z-0" />
+      <div className="absolute inset-0 bg-black/50 z-0" />
 
       <SideBarMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
@@ -162,65 +212,83 @@ function SelectCompany() {
           <Menu size={28} />
         </button>
       )}
-      <div className="relative w-screen h-screen flex  flex-col items-center p-4 lg:py-8 gap-3">
+
+      <div className="relative w-screen h-screen flex flex-col items-center p-4 lg:py-8 gap-3">
         <h2 className="text-2xl font-bold mb-3 mt-16 text-[#ffffff]">
           Selecione a empresa
         </h2>
+
         <form onSubmit={handleSubmit} className="flex flex-col w-[300px]">
           <InputSelect
             labelText="Cliente"
             inputHeight="50px"
             showIcon
-            opcoes={opcoesClientes}
-            onChange={handleClienteChange}
+            textStyle="text-xl font-medium text-[#01AAAD]"
+            opcoes={clientes}
             value={clienteSelecionado}
+            onChange={handleClienteChange}
+            disabled={loading}
           />
+          
           <InputSelect
             labelText="Unidade"
             inputHeight="50px"
             showIcon
-            opcoes={opcoesUnidades}
-            onChange={handleUnidadeChange}
+            textStyle="text-xl font-medium text-[#01AAAD]"
+            opcoes={unidades}
             value={unidadeSelecionada}
-            disabled={!clienteSelecionado}
+            onChange={handleUnidadeChange}
+            disabled={!clienteSelecionado || loading}
           />
+          
           <InputSelect
             labelText="Sublocal"
             inputHeight="50px"
             showIcon
-            opcoes={opcoesSublocais}
-            onChange={handleSublocalChange}
-            value={sublocalSelecionado}
-            disabled={!unidadeSelecionada}
+            textStyle="text-xl font-medium text-[#01AAAD]"
+            opcoes={subLocais}
+            value={subLocalSelecionado}
+            onChange={handleSubLocalChange}
+            disabled={!unidadeSelecionada || loading}
           />
 
-          <div className=" bg-white flex justify-center items-center h-[100px] mt-[24px] text-xl font-medium text-[#01AAAD] rounded-[8px]">
-            {logoCliente && (
-              <Image
-                className=""
-                src={logoCliente}
-                alt={`Logo de ${clienteSelecionado}`}
-                width={logoCliente.width}
-                height={logoCliente.height}
-              />
+          <div className="bg-white flex justify-center items-center h-[150px] mt-[24px] text-xl font-medium text-[#01AAAD] rounded-[8px]">
+            {clienteSelecionado ? (
+              <div className="text-center">
+                <p className="font-bold">{clienteSelecionado}</p>
+                {unidadeSelecionada && <p>Unidade: {unidadeSelecionada}</p>}
+                {subLocalSelecionado && <p>Sublocal: {subLocalSelecionado}</p>}
+              </div>
+            ) : (
+              <Image className="" src={LogoCompany} alt="" />
             )}
           </div>
-          <Link href="/importarvistoria">
-            <Button
-              type="submit"
-              textButton="Próximo"
-              disabled={!sublocalSelecionado}
-            />
-          </Link>
+
+          {error && (
+            <div className="bg-red-100 text-red-600 p-2 rounded mt-2">
+              {error}
+            </div>
+          )}
+          
+          <Button 
+            textButton="Próximo" 
+            type="submit"
+            disabled={(!clienteSelecionado || !unidadeSelecionada || !subLocalSelecionado) || loading}
+          />
         </form>
+        
+        {loading && (
+          <div className="mt-4 text-white">
+            Carregando...
+          </div>
+        )}
+        
         <Image
           src={Logo}
           alt="Error"
-          className="fixed bottom-2 max-w-[100px] mx-auto mt-8 mb-8  lg:hidden"
+          className="fixed bottom-2 max-w-[100px] mx-auto mt-8 mb-8 lg:hidden"
         />
       </div>
     </div>
   );
 }
-
-export default SelectCompany;
